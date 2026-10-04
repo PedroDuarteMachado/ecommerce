@@ -8,8 +8,6 @@ Analisa uma base **simulada** de 4.440 pedidos de e-commerce (2015–2024) e ent
 | Página do projeto (GitHub Pages) | `https://SEU-USUARIO.github.io/SEU-REPOSITORIO/` |
 | Dashboard (Streamlit Community Cloud) | `https://SEU-APP.streamlit.app` |
 
-> Substitua os links acima (e as três constantes no final do `index.html`) depois de publicar.
-
 ## Perguntas respondidas
 
 Categorias de maior faturamento e lucro · estados que concentram vendas · sazonalidade · desempenho por canal · produtos mais vendidos · evolução do faturamento · ticket médio por região · relação entre prazo de entrega, avaliação e vendas.
