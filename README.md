@@ -1,12 +1,10 @@
-# 🛒 Vendas em E-commerce no Brasil (2015–2024)
+# Vendas em E-commerce no Brasil (2015–2024)
 
 Projeto de **análise e visualização de dados com Python** — disciplina *Linguagem de Programação: Análise e Visualização de Dados com Python* (Tema 13).
 
 Analisa uma base **simulada** de 4.440 pedidos de e-commerce (2015–2024) e entrega um notebook de análise, um dashboard interativo em Streamlit e uma página de apresentação.
 
 | Entrega | Link |
-|---|---|
-| Repositório GitHub | `https://github.com/SEU-USUARIO/SEU-REPOSITORIO` |
 | Página do projeto (GitHub Pages) | `https://SEU-USUARIO.github.io/SEU-REPOSITORIO/` |
 | Dashboard (Streamlit Community Cloud) | `https://SEU-APP.streamlit.app` |
 
@@ -67,7 +65,7 @@ O notebook pode ser aberto com `jupyter notebook notebooks/analise_ecommerce.ipy
 - Remoção do caractere BOM no nome da coluna `ano`; padronização de textos e tipos.
 - Sem nulos nem duplicatas; `faturamento = quantidade × preço_unitario` em todas as linhas.
 - Novos atributos: `periodo`, `trimestre`, `margem_pct`, `resultado_calc`, `faixa_prazo`, `faixa_avaliacao`.
-- ⚠️ Em 99,9% das linhas, `lucro ≠ faturamento − custo` (característica da simulação). Os KPIs usam a coluna `lucro` fornecida; `resultado_calc` guarda a diferença para conferência.
+-  Em 99,9% das linhas, `lucro ≠ faturamento − custo` (característica da simulação). Os KPIs usam a coluna `lucro` fornecida; `resultado_calc` guarda a diferença para conferência.
 - **Ticket médio** = faturamento ÷ número de pedidos (cada linha da base é um pedido).
 
 ## Principais resultados
