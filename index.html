@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dashboard Executivo de Vendas em E-commerce no Brasil</title>
+<meta name="description" content="Projeto de análise e visualização de dados com Python: vendas em e-commerce no Brasil (2015–2024).">
+<style>
+  :root {
+    --azul: #1F4E79; --laranja: #E07A1F; --fundo: #F5F7FA; --texto: #1d2733;
+    --suave: #5b6b7c; --borda: #dde3ea; --card: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+         color: var(--texto); background: var(--fundo); line-height: 1.65; }
+  header { background: linear-gradient(135deg, #17395a, var(--azul)); color: #fff; padding: 56px 20px 48px; }
+  .wrap { max-width: 1020px; margin: 0 auto; padding: 0 20px; }
+  header .wrap { padding: 0; }
+  header h1 { margin: 0 0 10px; font-size: clamp(1.7rem, 4vw, 2.5rem); line-height: 1.2; }
+  header p { margin: 0; max-width: 720px; color: #dbe7f3; font-size: 1.08rem; }
+  header .meta { margin-top: 18px; font-size: .92rem; color: #b9cde0; }
+  main { padding: 8px 0 40px; }
+  section { margin: 36px 0; }
+  h2 { font-size: 1.45rem; margin: 0 0 14px; color: var(--azul); }
+  h2::after { content: ""; display: block; width: 44px; height: 3px; background: var(--laranja); margin-top: 6px; border-radius: 2px; }
+  p { margin: 0 0 12px; }
+  ul, ol { margin: 0 0 12px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+  .kpi { background: var(--card); border: 1px solid var(--borda); border-radius: 12px; padding: 16px 18px; }
+  .kpi small { display: block; color: var(--suave); font-size: .82rem; text-transform: uppercase; letter-spacing: .04em; }
+  .kpi strong { display: block; font-size: 1.55rem; color: var(--azul); margin: 2px 0; }
+  .kpi span { color: var(--suave); font-size: .88rem; }
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; }
+  .card { background: var(--card); border: 1px solid var(--borda); border-radius: 12px; padding: 18px; }
+  .card h3 { margin: 0 0 6px; font-size: 1.02rem; }
+  .card p { color: var(--suave); font-size: .93rem; margin-bottom: 10px; }
+  .btn { display: inline-block; padding: 9px 16px; border-radius: 8px; background: var(--azul); color: #fff;
+         text-decoration: none; font-weight: 600; font-size: .93rem; }
+  .btn:hover { background: #163b5c; }
+  .btn.sec { background: #fff; color: var(--azul); border: 1px solid var(--azul); }
+  .btn.sec:hover { background: #eef3f8; }
+  .cta { background: var(--card); border: 2px solid var(--laranja); border-radius: 14px; padding: 26px; text-align: center; }
+  .cta .btn { background: var(--laranja); font-size: 1.05rem; padding: 12px 24px; }
+  .cta .btn:hover { background: #c7690f; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; list-style: none; }
+  .tags li { background: #e8eef5; color: var(--azul); border-radius: 999px; padding: 4px 14px; font-size: .9rem; margin: 0; font-weight: 600; }
+  figure { margin: 0 0 22px; background: var(--card); border: 1px solid var(--borda); border-radius: 12px; padding: 14px; }
+  figure img { width: 100%; height: auto; display: block; border-radius: 6px; }
+  figcaption { margin-top: 10px; font-size: .93rem; color: var(--suave); }
+  .achados li strong { color: var(--azul); }
+  .aviso { background: #fff7ec; border: 1px solid #f3d3a6; border-radius: 10px; padding: 14px 16px; font-size: .95rem; }
+  footer { border-top: 1px solid var(--borda); padding: 22px 0 40px; color: var(--suave); font-size: .9rem; text-align: center; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Dashboard Executivo de Vendas em E-commerce no Brasil</h1>
+    <p>Análise e visualização de dados com Python sobre 4.440 pedidos entre 2015 e 2024: faturamento, lucro, regiões,
+       categorias, canais, sazonalidade, logística e satisfação do cliente.</p>
+    <div class="meta">Projeto G1 · Linguagem de Programação — Análise e Visualização de Dados com Python · Tema 13</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section>
+    <h2>Sobre o projeto</h2>
+    <p>O comércio eletrônico é um dos principais canais de venda do país e gera grandes volumes de dados. Este projeto
+       transforma uma base simulada de vendas em informação para decisão: um <strong>notebook</strong> com a análise completa e um
+       <strong>dashboard interativo em Streamlit</strong> com filtros, KPIs, gráficos, tabela dinâmica, consultas SQL,
+       interpretação textual e conclusão executiva.</p>
+  </section>
+
+  <section>
+    <h2>Perguntas de negócio</h2>
+    <ol>
+      <li>Quais categorias têm maior faturamento e lucro?</li>
+      <li>Quais estados concentram mais vendas?</li>
+      <li>Existem períodos sazonais de maior consumo?</li>
+      <li>Quais canais têm melhor desempenho?</li>
+      <li>Quais produtos vendem mais?</li>
+      <li>Como o faturamento evoluiu ao longo do tempo?</li>
+      <li>Existem regiões com maior ticket médio?</li>
+      <li>Prazo de entrega e avaliação do cliente se relacionam com as vendas?</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Indicadores principais (2015–2024)</h2>
+    <div class="kpis">
+      <div class="kpi"><small>Faturamento total</small><strong>R$ 85,1 mi</strong><span>4.440 pedidos</span></div>
+      <div class="kpi"><small>Lucro total</small><strong>R$ 26,9 mi</strong><span>margem de 31,6%</span></div>
+      <div class="kpi"><small>Ticket médio</small><strong>R$ 19.173</strong><span>por pedido</span></div>
+      <div class="kpi"><small>Produto mais vendido</small><strong>Produto D</strong><span>16.984 unidades</span></div>
+      <div class="kpi"><small>Categoria mais lucrativa</small><strong>Beleza</strong><span>R$ 4,8 mi de lucro</span></div>
+      <div class="kpi"><small>Região com maior faturamento</small><strong>Sudeste</strong><span>34,6% do total</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Principais visualizações</h2>
+    <figure>
+      <img src="imagens/02_evolucao_temporal.png" alt="Evolução mensal do faturamento com média móvel de 12 meses e faturamento anual" loading="lazy">
+      <figcaption><strong>Evolução temporal.</strong> O faturamento anual oscila entre R$ 8,0 mi e R$ 9,1 mi, sem tendência de crescimento (cerca de 0,02% ao ano).</figcaption>
+    </figure>
+    <figure>
+      <img src="imagens/03_categorias_produtos.png" alt="Faturamento e lucro por categoria e unidades vendidas por produto" loading="lazy">
+      <figcaption><strong>Categorias e produtos.</strong> Beleza lidera faturamento e lucro; a margem é quase igual entre categorias (31,2% a 32,0%), então a diferença é de volume.</figcaption>
+    </figure>
+    <figure>
+      <img src="imagens/04_regioes.png" alt="Faturamento por estado e ticket médio por região" loading="lazy">
+      <figcaption><strong>Comparação regional.</strong> O Sudeste concentra mais pedidos e, por isso, mais faturamento; o ticket médio é maior no Nordeste, mas varia pouco entre regiões.</figcaption>
+    </figure>
+    <figure>
+      <img src="imagens/06_sazonalidade.png" alt="Heatmap mensal do faturamento e índice sazonal" loading="lazy">
+      <figcaption><strong>Sazonalidade.</strong> Pico em outubro e vale em junho, mas com amplitude de apenas 14 pontos percentuais: padrão sazonal fraco.</figcaption>
+    </figure>
+    <figure>
+      <img src="imagens/05_lucro_faturamento.png" alt="Dispersão entre lucro e faturamento por pedido" loading="lazy">
+      <figcaption><strong>Lucro × faturamento.</strong> Correlação forte (r = 0,93): pedidos maiores geram lucro maior.</figcaption>
+    </figure>
+    <figure>
+      <img src="imagens/07_canais_logistica.png" alt="Desempenho por canal, avaliação por prazo e faturamento por avaliação" loading="lazy">
+      <figcaption><strong>Canais, logística e avaliação.</strong> Os três canais ficam muito próximos; prazo e avaliação não mostram relação com as vendas.</figcaption>
+    </figure>
+  </section>
+
+  <section>
+    <h2>Principais achados</h2>
+    <ul class="achados">
+      <li><strong>Negócio estável:</strong> não há tendência de alta nem sazonalidade forte na base.</li>
+      <li><strong>Volume explica as diferenças:</strong> regiões e categorias líderes vendem mais pedidos/unidades, não com margem ou ticket muito maiores.</li>
+      <li><strong>Margem homogênea:</strong> cerca de 31–32% em todas as categorias.</li>
+      <li><strong>Satisfação desconectada das vendas:</strong> correlações de prazo × avaliação e avaliação × faturamento são praticamente nulas.</li>
+    </ul>
+    <p class="aviso"><strong>Atenção:</strong> a base é simulada. O lucro informado não é igual a faturamento − custo na maioria das linhas, e os padrões
+       são fracos por construção; as conclusões de negócio devem ser validadas com dados reais.</p>
+  </section>
+
+  <section>
+    <h2>Conclusão executiva</h2>
+    <p>A operação faturou R$ 85,1 milhões e lucrou R$ 26,9 milhões, com ticket médio de R$ 19.173. As oportunidades estão em concentrar
+       esforços nas categorias de maior volume (Beleza), aumentar o ticket médio com combos e frete grátis, investigar as regiões de menor
+       participação (Norte e Centro-Oeste) e medir, com dados reais, o impacto do prazo de entrega na satisfação.</p>
+  </section>
+
+  <section>
+    <h2>Tecnologias</h2>
+    <ul class="tags">
+      <li>Python</li><li>Pandas</li><li>NumPy</li><li>Matplotlib</li><li>Seaborn</li><li>Plotly</li>
+      <li>Streamlit</li><li>SQLAlchemy</li><li>SQLite</li><li>GitHub</li>
+    </ul>
+    <p>Funcionalidades avançadas: persistência em SQLite com SQLAlchemy, dashboard multipágina, mapa interativo com Plotly,
+       correlação estatística e série temporal com média móvel.</p>
+  </section>
+
+  <section>
+    <h2>Componentes do projeto</h2>
+    <div class="cards">
+      <div class="card"><h3>README</h3><p>Descrição, estrutura e instruções de execução.</p><a class="btn sec" data-link="readme" href="README.md">Ver README</a></div>
+      <div class="card"><h3>Notebook de análise</h3><p>Limpeza, engenharia de atributos, KPIs, gráficos e conclusão.</p><a class="btn sec" data-link="notebook" href="#">Ver notebook</a></div>
+      <div class="card"><h3>Código do dashboard</h3><p>Aplicação Streamlit com filtros, KPIs e gráficos.</p><a class="btn sec" data-link="app" href="#">Ver app.py</a></div>
+      <div class="card"><h3>Base de dados</h3><p>CSV simulado com 4.440 pedidos e 16 colunas.</p><a class="btn sec" href="dados/simulacao_ecommerce_brasil.csv" download>Baixar base de dados</a></div>
+      <div class="card"><h3>Repositório</h3><p>Código-fonte completo no GitHub.</p><a class="btn sec" data-link="repo" href="#">Abrir no GitHub</a></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="cta">
+      <h2 style="display:inline-block">Dashboard interativo</h2>
+      <p>Filtre por ano, mês, região, estado, categoria e canal e explore KPIs, gráficos, mapa, tabela dinâmica e consultas SQL.</p>
+      <a class="btn" data-link="streamlit" href="#" target="_blank" rel="noopener">Acessar dashboard Streamlit</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">Projeto acadêmico de análise e visualização de dados · Dados simulados · 2015–2024</div>
+</footer>
+
+<script>
+  // ► PREENCHA com os seus dados depois de publicar o projeto:
+  const GITHUB_USUARIO = "SEU-USUARIO";
+  const GITHUB_REPOSITORIO = "SEU-REPOSITORIO";
+  const STREAMLIT_URL = "https://SEU-APP.streamlit.app";
+
+  const repo = `https://github.com/${GITHUB_USUARIO}/${GITHUB_REPOSITORIO}`;
+  const links = {
+    repo: repo,
+    readme: `${repo}#readme`,
+    notebook: `${repo}/blob/main/notebooks/analise_ecommerce.ipynb`,
+    app: `${repo}/blob/main/app.py`,
+    streamlit: STREAMLIT_URL
+  };
+  document.querySelectorAll("[data-link]").forEach(a => { a.href = links[a.dataset.link]; });
+</script>
+</body>
+</html>
