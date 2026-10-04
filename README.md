@@ -5,8 +5,8 @@ Projeto de **análise e visualização de dados com Python** — disciplina *Lin
 Analisa uma base **simulada** de 4.440 pedidos de e-commerce (2015–2024) e entrega um notebook de análise, um dashboard interativo em Streamlit e uma página de apresentação.
 
 | Entrega | Link |
-| Página do projeto (GitHub Pages) | `https://SEU-USUARIO.github.io/SEU-REPOSITORIO/` |
-| Dashboard (Streamlit Community Cloud) | `https://SEU-APP.streamlit.app` |
+| Página do projeto (GitHub Pages) | `https://github.com/PedroDuarteMachado/ecommerce/tree/main` |
+| Dashboard (Streamlit Community Cloud) | `https://ecommerce-7qnsytbn9qqwwkppsapqfb.streamlit.app/` |
 
 ## Perguntas respondidas
 
