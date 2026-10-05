@@ -332,6 +332,11 @@ Use os **filtros na barra lateral** — todos os KPIs, gráficos e interpretaç�
             f"- ⚠️ Em **{pct(incons, 1)}** das linhas, `lucro ≠ faturamento − custo` (característica da simulação). "
             f"Os KPIs usam a coluna `lucro` fornecida; `resultado_calc` guarda faturamento − custo para conferência."
         )
+    st.write("""
+    Aluno: Pedro Duarte Machado
+
+    Professor: Alexandre Neves Louzada
+    """)
 
 
 def pagina_temporal() -> None:
