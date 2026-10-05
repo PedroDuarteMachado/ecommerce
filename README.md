@@ -1,6 +1,10 @@
 # Vendas em E-commerce no Brasil (2015–2024)
 
-Projeto desenvolvido para a disciplina **Linguagem de Programação: Análise e Visualização de Dados com Python**.
+Projeto desenvolvido para a disciplina: **Linguagem de Programação: Análise e Visualização de Dados com Python**.
+
+**Aluno: Pedro Duarte Machado**
+
+**Professor: Alexandre Neves Louzada**
 
 O projeto realiza uma análise exploratória e visualização de uma base **simulada com 4.440 pedidos de e-commerce**, abrangendo o período de 2015 a 2024.
 
