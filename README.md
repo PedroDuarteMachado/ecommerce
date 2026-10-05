@@ -81,45 +81,6 @@ ecommerce/
 └── imagens/
 ```
 
-## Como executar
-
-Clone o repositório:
-
-```bash
-git clone https://github.com/PedroDuarteMachado/ecommerce.git
-cd ecommerce
-```
-
-Crie um ambiente virtual:
-
-```bash
-python -m venv .venv
-```
-
-Ative o ambiente no Windows:
-
-```bash
-.venv\Scripts\activate
-```
-
-Instale as dependências:
-
-```bash
-pip install -r requirements.txt
-```
-
-Execute o dashboard:
-
-```bash
-streamlit run app.py
-```
-
-O notebook pode ser aberto com:
-
-```bash
-jupyter notebook notebooks/analise_ecommerce.ipynb
-```
-
 ## Banco de dados
 
 A aplicação utiliza **SQLite** para armazenar os dados tratados e **SQLAlchemy** para realizar a comunicação com o banco.
